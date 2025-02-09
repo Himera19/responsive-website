@@ -8,7 +8,7 @@ const { widthValue, widthNames } = useScreenInfo()
   <div v-if="widthNames.sm"><h1>Küçük</h1></div>
   <div v-if="widthNames.md"><h1>Orta</h1></div>
   <div v-if="widthNames.hg"><h1>Büyük</h1></div>
-  <h2>{{ widthValue }}</h2>
+  <h1>{{ widthValue }}</h1>
 </template>
 
 <style></style>
