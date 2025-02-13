@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { useScreenInfo } from '@/helpers/screenWidthType'
+import { useShoppingCardStore } from '@/stores/shoppingCard'
 
-const { widthValue, widthNames } = useScreenInfo()
+const shoppingCard = useShoppingCardStore()
+function handleSmallButtonClick() {
+  shoppingCard.addItem('Ahmet')
+}
 </script>
 
 <template>
-  <div v-if="widthNames.sm"><h1>Küçük</h1></div>
-  <div v-if="widthNames.md"><h1>Orta</h1></div>
-  <div v-if="widthNames.hg"><h1>Büyük</h1></div>
-  <h1>{{ widthValue }}</h1>
+  <small-button backgroundColor="green" @onSmallButtonClick="handleSmallButtonClick">
+  </small-button>
+  <p>{{ shoppingCard.getCardCount() }}</p>
+  <ul v-for="card in shoppingCard.cards" :key="card">
+    <li>{{ card }}</li>
+  </ul>
 </template>
-
-<style></style>

@@ -10,14 +10,23 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/screen-size',
+      name: 'screen-size',
+      component: () => import('@/views/ScreenSize.vue'),
+    },
+    {
+      path: '/fetch-api',
+      name: 'fetch-api',
+      component: () => import('@/views/FetchApiView.vue'),
     },
   ],
 })
+
+if (router.currentRoute.value.name == 'home')
+  router.beforeEach((to, from, next) => {
+    if (to.name == 'home' && to.query.field != null) {
+      next()
+    }
+  })
 
 export default router

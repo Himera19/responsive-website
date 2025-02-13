@@ -1,7 +1,17 @@
-<script setup lang="ts">
-import { RouterView } from 'vue-router'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <RouterView> </RouterView>
+  <div class="nav">
+    <RouterLink to="/">Ana Sayfa</RouterLink>
+    <RouterLink to="/screen-size">Ekran Boyutu</RouterLink>
+    <RouterLink to="/fetch-api">Api Erişimi</RouterLink>
+  </div>
+  <RouterView />
 </template>
+
+<style scoped>
+.nav a {
+  font-size: 20px;
+  margin-right: 30px;
+}
+</style>
