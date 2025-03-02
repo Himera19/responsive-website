@@ -1,5 +1,4 @@
-export interface ITodoModel {
-  userId: string
-  title: string
-  completed: boolean
+export interface IUserModel {
+  id: number
+  name: string
 }

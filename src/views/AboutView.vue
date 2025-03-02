@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>Ana Sayfa</h1>
+    <h1>Hakkımda Sayfası</h1>
   </div>
 </template>

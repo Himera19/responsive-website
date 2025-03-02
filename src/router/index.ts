@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useAuthStore } from '@/stores/authStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,25 +9,32 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      meta: {
+        authRequired: true,
+      },
     },
     {
-      path: '/screen-size',
-      name: 'screen-size',
-      component: () => import('@/views/ScreenSize.vue'),
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/LoginView.vue'),
     },
     {
-      path: '/fetch-api',
-      name: 'fetch-api',
-      component: () => import('@/views/FetchApiView.vue'),
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/AboutView.vue'),
+      meta: {
+        authRequired: true,
+      },
     },
   ],
 })
 
-if (router.currentRoute.value.name == 'home')
-  router.beforeEach((to, from, next) => {
-    if (to.name == 'home' && to.query.field != null) {
-      next()
-    }
-  })
+router.beforeEach((to) => {
+  const authStore = useAuthStore()
+
+  if (to.meta.authRequired && !authStore.isLogged) {
+    location.href = '/login'
+  }
+})
 
 export default router
