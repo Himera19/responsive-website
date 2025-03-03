@@ -8,11 +8,13 @@ import router from './router'
 import { registerPlugins } from '@/plugins'
 import { registerCustomDesign } from './components'
 
+ import 'ant-design-vue/dist/reset.css'
+
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-registerPlugins(app)
+ registerPlugins(app)
 registerCustomDesign(app)
 
 app.mount('#app')
